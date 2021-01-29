@@ -12,3 +12,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 300px;
+  padding: 16px;
+  border: 1px solid #1672c7;
+  border-radius: 10px;
+  margin: auto;
+}
+
+form label {
+  width: 72px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+form input[type='text'],
+select {
+  width: 180px;
+  padding: 3px 10px;
+  border: 1px solid #f6f6f6;
+  border-radius: 3px;
+  background-color: #f6f6f6;
+  margin: 8px 0;
+  display: inline-block;
+}
+form button {
+  width: 100%;
+  padding: 8px 16px;
+  margin-top: 32px;
+  border: 1px solid rgb(31, 2, 199);
+  border-radius: 5px;
+  display: block;
+  color: #fff;
+  background-color: rgb(62, 145, 212);
+}
+
+form button:hover {
+  cursor: pointer;
+}
