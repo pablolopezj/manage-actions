@@ -14,13 +14,20 @@ npm install --save player-events
 
 ```jsx
 import React, { Component } from 'react'
-
-import MyComponent from 'player-events'
-import 'player-events/dist/index.css'
+import PlayerEvents from 'player-events'
 
 class Example extends Component {
+  handleEvent() {
+    const events = new PlayerEvents()
+    events.callAllEventsUrl('url', 'action')
+  }
+
   render() {
-    return <MyComponent />
+    return (
+      <div>
+        <p>Here put your content.</p>
+      </div>
+    )
   }
 }
 ```
