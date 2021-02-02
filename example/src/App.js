@@ -6,11 +6,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       url: 'https://servicios.site/BLDash/ads.json',
-      action: 'midpoint'
+      action: 'midpoint',
+      adId: '_PT10M_0'
     }
 
     this.handleChangeUrl = this.handleChangeUrl.bind(this);
     this.handleChangeAction = this.handleChangeAction.bind(this);
+    this.handleChangeAdId = this.handleChangeAdId.bind(this);
     this.handleCallEvets = this.handleCallEvets.bind(this);
   }
 
@@ -19,16 +21,20 @@ class App extends React.Component {
   }
 
   handleChangeAction(e) {
-    this.setState({ action: e.target.value });
+    this.setState({ action: e.target.value })
+  }
+
+  handleChangeAdId(e) {
+    this.setState({ adId: e.target.value })
   }
 
   handleCallEvets() {
-    console.log(this.state);
-    const events = new PlayerEvents();
+    const events = new PlayerEvents()
     events.callAllEventsUrl(
       this.state.url,
-      this.state.action
-    );
+      this.state.action,
+      this.state.adId
+    )
   }
 
   render() {
@@ -52,6 +58,16 @@ class App extends React.Component {
               <option value="pause">pause</option>
               <option value="start">start</option>
               <option value="mute">mute</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="adId">Ad ID:</label>
+            <select id="adId" onChange={this.handleChangeAdId}>
+              <option value="_PT10M_0">_PT10M_0</option>
+              <option value="_PT20M0.388S_0">_PT20M0.388S_0</option>
+              <option value="_PT20M_0">_PT20M_0</option>
+              <option value="_PT0S_0">_PT0S_0</option>
+              <option value="_PT30S_0">_PT30S_0</option>
             </select>
           </div>
           <div className="controls">

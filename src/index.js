@@ -18,8 +18,8 @@ class PlayerEvents {
       }
     ).then(response => response.json())
       .then(data => data)
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        throw error
       });
   }
 
@@ -32,7 +32,7 @@ class PlayerEvents {
     });
   }
 
-  searcgEvents(eventType, data) {
+  searchEvents(eventType, data) {
     let urls = [];
     data.avails.map(item => {
       let findUrl = item.ads[0].trackingEvents.filter(item => {
@@ -44,10 +44,29 @@ class PlayerEvents {
     return urls;
   }
 
-  async callAllEventsUrl(url, eventType) {
+  searchAds(adId, data, eventType) {
+    let ads = [];
+    let urls;
+    data.avails.map(item => {
+      let listAd = item.ads.filter(ad => {
+        return ad.adId === adId;
+      });
+      if (listAd.length) {
+        ads.push(listAd);
+      }
+    });
+
+    urls = ads[0][0].trackingEvents.filter(item => {
+      return item.eventType === eventType;
+    });
+    console.log(urls[0]);
+  }
+
+  async callAllEventsUrl(url, eventType, adId) {
     const data = await this.readJson(url);
-    let urls = this.searcgEvents(eventType, data);
-    this.callUrl(urls);
+    this.searchAds(adId, data, eventType);
+    //let urls = this.searchEvents(eventType, data);
+    // this.callUrl(urls);
   }
 }
 
